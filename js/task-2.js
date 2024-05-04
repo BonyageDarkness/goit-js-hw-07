@@ -25,15 +25,19 @@ const images = [
     },
 ];
 
-const list = document.querySelector('.gallery');
+const list = document.createElement('ul');
+list.classList.add('gallery');
+
 images.forEach((item) => {
     const listItem = document.createElement('li');
     const image = document.createElement('img');
-    list.append(listItem);
-    listItem.append(image);
+    listItem.appendChild(image);
     image.src = item.url;
     image.alt = item.alt;
+    list.appendChild(listItem);
 });
+
+document.body.appendChild(list);
 
 console.log(list);
 

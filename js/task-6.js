@@ -4,7 +4,7 @@ function getRandomHexColor() {
         .padStart(6, 0)}`;
 }
 
-const createBtn = document.querySelector('[data-create');
+const createBtn = document.querySelector('[data-create]');
 const destroyBtn = document.querySelector('[data-destroy]');
 const input = document.querySelector('input');
 const box = document.querySelector('#boxes');
@@ -12,16 +12,13 @@ const container = document.querySelector('#controls');
 
 const createBoxes = (amount) => {
     let size = 30;
-    box.innerHTML = '';
-    input.value = '';
+    let boxesHTML = '';
     for (let i = 0; i < amount; i++) {
-        const boxen = document.createElement('div');
-        boxen.style.height = `${size}px`;
-        boxen.style.width = `${size}px`;
-        boxen.style.backgroundColor = getRandomHexColor();
-        box.appendChild(boxen);
+        const color = getRandomHexColor();
+        boxesHTML += `<div style="height:${size}px; width:${size}px; background-color:${color};"></div>`;
         size += 10;
     }
+    box.innerHTML = boxesHTML;
 };
 
 createBtn.addEventListener('click', () => {
