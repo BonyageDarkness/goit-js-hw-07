@@ -12,31 +12,30 @@ const container = document.querySelector('#controls');
 
 const createBoxes = (amount) => {
     let size = 30;
-    let boxesHTML = '';
+    const fragment = document.createDocumentFragment();
     for (let i = 0; i < amount; i++) {
         const color = getRandomHexColor();
-        boxesHTML += `<div style="height:${size}px; width:${size}px; background-color:${color};"></div>`;
+        const div = document.createElement('div');
+        div.style.height = `${size}px`;
+        div.style.width = `${size}px`;
+        div.style.backgroundColor = color;
+        fragment.appendChild(div);
         size += 10;
     }
-    box.innerHTML = boxesHTML;
+    box.appendChild(fragment);
 };
 
 createBtn.addEventListener('click', () => {
     const item = parseInt(input.value);
-
-    if (item >= 1 && item <= 100) {
+    if (!isNaN(item) && item >= 1 && item <= 100) {
         createBoxes(item);
         input.value = '';
     }
 });
 
 destroyBtn.addEventListener('click', () => {
-    destroyBoxes();
-});
-
-const destroyBoxes = () => {
     box.innerHTML = '';
-};
+});
 
 container.style.margin = '32px';
 container.style.display = 'flex';
